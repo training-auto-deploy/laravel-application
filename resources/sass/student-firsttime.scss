@@ -1,0 +1,11 @@
+.suggestion {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(135deg, #4c5988 5%, #255aab 95%);
+	.label-title{
+		color: #fff;
+		font-size: 16px;
+	}
+}
