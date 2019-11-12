@@ -4,10 +4,10 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 // Project name
-set('application', 'hackathon-deployer');
+set('application', 'zero_downtime_deploy');
 
 // Project repository
-set('repository', 'https://github.com/tiennv-1572/hackathon-project.git');
+set('repository', 'git@github.com:training-auto-deploy/laravel-application.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true); 
@@ -22,17 +22,47 @@ add('writable_dirs', []);
 
 // Hosts
 
-host('172.104.42.6')
-    ->user('root')
-    ->stage('development')
-    ->set('deploy_path', '~/var/www/{{application}}')
-    ->forwardAgent(false); 
-    
+host('10.0.4.18')
+    ->user('deploy')
+    ->stage('staging')
+    ->set('deploy_path', '~/{{application}}');    
+  
 // Tasks
 
-task('build', function () {
-    run('cd {{release_path}} && build');
+task('reload:php-fpm', function () {
+    run('sudo /etc/init.d/php7.2-fpm reload');
 });
+
+task('yarn:install', function () {
+    run('cd {{release_path}} && yarn install');
+});
+
+task('yarn:run:production', function () {
+    run('cd {{release_path}} && yarn run production');
+});
+
+
+desc('Deploy your project');
+task('deploy', [
+    'deploy:info',
+    'deploy:prepare',
+    'deploy:lock',
+    'deploy:release',
+    'deploy:update_code',
+    'deploy:shared',
+    'deploy:vendors',
+    'deploy:writable',
+    'artisan:storage:link',
+    'artisan:view:cache',
+    'artisan:config:cache',
+    'artisan:optimize',
+    'deploy:symlink',
+    'deploy:unlock',
+    'cleanup',
+    'reload:php-fpm',
+    'yarn:install',
+    'yarn:run:production'
+]);
 
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
@@ -41,3 +71,4 @@ after('deploy:failed', 'deploy:unlock');
 
 before('deploy:symlink', 'artisan:migrate');
 
+desc('Deploy done!');
