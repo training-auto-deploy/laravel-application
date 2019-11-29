@@ -11,11 +11,11 @@ class Time extends Model
 
     public function getTimeStringAttribute()
     {
-    	return Carbon::createFromFormat('H:s:i', $this->time)->format('H:s');
+        return Carbon::createFromFormat('H:s:i', $this->time)->format('H:s');
     }
 
     public function schedule()
     {
-    	return $this->belongsTo(Schedule::class);
+        return $this->belongsTo(Schedule::class);
     }
 }

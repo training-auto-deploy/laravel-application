@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Models\Classes;
 use App\Repositories\Interfaces\ClassRepository;
 
-
 class EloquentClassRepository extends EloquentRepository implements ClassRepository
 {
     public function __construct(Classes $model)

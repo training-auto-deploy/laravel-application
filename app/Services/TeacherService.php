@@ -22,5 +22,4 @@ class TeacherService
 
         return $this->userService->getAllNameUserById($userId);
     }
-
 }

@@ -15,16 +15,16 @@ class Teacher extends Model
 
     public function user()
     {
-    	return $this->belongsTo(User::class,'id');
+        return $this->belongsTo(User::class,'id');
     }
 
     public function schedules()
     {
-    	return $this->morphMany(Schedule::class, 'schedule');
+        return $this->morphMany(Schedule::class, 'schedule');
     }
 
     public function subjects()
     {
-    	return $this->belongsToMany(Subject::class, 'teacher_subjects');
+        return $this->belongsToMany(Subject::class, 'teacher_subjects');
     }
 }
