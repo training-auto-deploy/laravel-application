@@ -8,7 +8,7 @@ class Subject extends Model
 {
     protected $tables = 'subjects';
     protected $fillable = [
-    	'id',
-    	'name'
+        'id',
+        'name'
     ];
 }

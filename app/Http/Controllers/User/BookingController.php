@@ -25,19 +25,19 @@ class BookingController extends Controller
     {
         $time = Time::findOrFail($request->time);
         $start = $time->schedule->date . ' ' . $time->time;
-    	$data = [
-    		'student_id' => Auth::id(),
-    		'teacher_id' => $request->teacher,
-    		'start_time' => $start,
-    		'end_time' => Carbon::parse($start)->addHour(2),
-    		'status' => 0,
-    		'link_call' => 'https://meet.google.com/hep-zacz-dhg',
+        $data = [
+            'student_id' => Auth::id(),
+            'teacher_id' => $request->teacher,
+            'start_time' => $start,
+            'end_time' => Carbon::parse($start)->addHour(2),
+            'status' => 0,
+            'link_call' => 'https://meet.google.com/hep-zacz-dhg',
             'name' => Subject::findOrFail($request->subject)->name,
-    	];
+        ];
 
     	$class = Classes::create($data);
 
-    	return redirect()->route('students.classes');
+        return redirect()->route('students.classes');
     }
 
     public function getListClassByStudentId()
@@ -50,6 +50,5 @@ class BookingController extends Controller
         }
 
         return redirect()->home();
-
     }
 }

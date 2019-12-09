@@ -25,7 +25,6 @@ class ClassService
         $nameTeacher = $this->teacherService->getAllName($teacherId)->toArray();
 
         foreach ($datas as $data) {
-
             $listClass[] = [
                 'teacher_name' => $nameTeacher[$data->teacher_id] ?? '',
                 'name' => $data->name,
