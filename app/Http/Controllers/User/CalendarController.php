@@ -35,7 +35,7 @@ class CalendarController extends Controller
             $schedule = Schedule::create([
                 'date' => $date,
                 'schedule_type' => Teacher::class,
-                'schedule_id'=> $user->teacher->id,
+                'schedule_id' => $user->teacher->id,
             ]);
 
             $hours = [];
