@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $request = $request->all();
-        $teachers = Teacher::orderBy('id','ASC');
+        $teachers = Teacher::orderBy('id', 'ASC');
 
         if (isset($request['grades'])) {
             $teacherIds = [];
@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         return view(
             'home',
-            compact('grades','subjects','teachers','request')
+            compact('grades', 'subjects', 'teachers', 'request')
         );
     }
 }
