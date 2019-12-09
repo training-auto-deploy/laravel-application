@@ -16,6 +16,7 @@ class HomeController extends Controller
     {
         $request = $request->all();
         $teachers = Teacher::orderBy('id','ASC');
+
         if (isset($request['grades'])) {
             $teacherIds = [];
             foreach ($teachers as $key => $teacher) {
@@ -35,6 +36,9 @@ class HomeController extends Controller
         $subjects = Subject::all();
         $teachers = $teachers->paginate(10);
 
-        return view('home', compact('grades','subjects','teachers','request'));
+        return view(
+            'home',
+            compact('grades','subjects','teachers','request')
+        );
     }
 }

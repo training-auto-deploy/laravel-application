@@ -35,7 +35,7 @@ class BookingController extends Controller
             'name' => Subject::findOrFail($request->subject)->name,
         ];
 
-    	$class = Classes::create($data);
+        $class = Classes::create($data);
 
         return redirect()->route('students.classes');
     }
