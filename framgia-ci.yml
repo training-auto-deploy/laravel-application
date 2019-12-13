@@ -34,12 +34,22 @@ test:
       - phpdbg -qrr vendor/bin/phpunit -d memory_limit=1024M
         --coverage-clover=.framgia-ci-reports/coverage-clover.xml
         --coverage-html=.framgia-ci-reports/coverage
+environments:
+  CHATWORK_TOKEN: $$chatwork_token
+  ROOM_ID: $$room_id
 deploy:
-  deployer_development:
+  deployer:
     image: framgiaciteam/deb-deploy:7.3
     when:
       branch: master
     run: dep deploy staging -vvv
+  chatwork:
+    image: framgiaciteam/chatwork-deploy-only-plugin:latest
+    chatwork_token: $$chatwork_token
+    room_id: $$room_id
+    when:
+      branch: master
+      status: [success, failed]
 cache:
   composer:
     folder: vendor
