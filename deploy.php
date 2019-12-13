@@ -10,13 +10,13 @@ set('application', 'zero_downtime_deploy');
 set('repository', 'git@github.com:training-auto-deploy/laravel-application.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
+set('git_tty', false);
 
-// Shared files/dirs between deploys 
+// Shared files/dirs between deploys
 add('shared_files', []);
 add('shared_dirs', []);
 
-// Writable dirs by web server 
+// Writable dirs by web server
 add('writable_dirs', []);
 
 
@@ -25,8 +25,8 @@ add('writable_dirs', []);
 host('10.0.4.18')
     ->user('deploy')
     ->stage('staging')
-    ->set('deploy_path', '~/{{application}}');    
-  
+    ->set('deploy_path', '~/{{application}}');
+
 // Tasks
 
 task('reload:php-fpm', function () {
