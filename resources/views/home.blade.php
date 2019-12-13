@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col text-center">
                                     <div class="home_slider_title">The Premium System Education</div>
-                                    <div class="home_slider_subtitle">Future Of Education Technology</div>
+                                    <div class="home_slider_subtitle">Future Of Education Technology In Vietnam</div>
                                 </div>
                             </div>
                         </div>
